@@ -2,11 +2,9 @@ pipeline{
     agent none
 
     environment{
-        SONARQUBE_URL = 'http://138f85f2.ngrok.io'
-        SONARQUBE_LOGIN = credentials('sonar-login')
         VM_USER = "ec2-user"
-        VM_SERVER = "172.31.85.9"
-        TAG = "lokeshkamalay/tomcat"
+        VM_SERVER = "172.31.86.101"
+        TAG = "sushilbh/tomcat"
         PORT = 8080
 
     }
@@ -17,7 +15,7 @@ pipeline{
     // tools{}
     // options{}
     stages{
-        stage('Junit and Sonar'){
+        stage('Junit'){
             agent {
                 docker {
                     image 'maven:3-jdk-8'
@@ -25,7 +23,7 @@ pipeline{
                 }
             }
             steps {
-                sh 'mvn --settings settings.xml test verify surefire-report:report-only sonar:sonar -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_LOGIN'
+                sh 'mvn --settings settings.xml test verify surefire-report:report-only' //sonar:sonar -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_LOGIN'
             }
             post {
                 success {
