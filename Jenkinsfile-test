@@ -3,8 +3,9 @@ pipeline {
     
     stages {
         stage ('Compile stage') {
+
             steps {
-            withMaven(maven: '') {
+               withMaven(maven: 'maven360') {
                 sh 'mvn clean compile'
             }
             }    
@@ -13,13 +14,13 @@ pipeline {
 }
 stage ('Testing stage') {
     steps {
-        withMaven(maven : ''){
+        withMaven(maven : 'maven360'){
         }
     }
 }
 stage ('Deployment Stage') {
     steps {
-        withMaven(maven : '') {    
+        withMaven(maven : 'maven360') {    
         }
     }
 }
