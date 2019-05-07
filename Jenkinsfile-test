@@ -15,12 +15,14 @@ pipeline {
 stage ('Testing stage') {
     steps {
         withMaven(maven : 'maven360') {
+        sh 'mvn test'
         }
     }
 }
 stage ('Deployment Stage') {
     steps {
-        withMaven(maven : 'maven360') {    
+        withMaven(maven : 'maven360') {
+        sh 'mvn deploy'    
         }
     }
 }
