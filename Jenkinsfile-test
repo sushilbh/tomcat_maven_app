@@ -14,7 +14,7 @@ pipeline {
 }
 stage ('Testing stage') {
     steps {
-        withMaven(maven : 'maven360'){
+        withMaven(maven : 'maven360') {
         }
     }
 }
